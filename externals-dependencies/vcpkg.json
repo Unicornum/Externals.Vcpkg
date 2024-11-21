@@ -1,0 +1,11 @@
+{
+  "name": "externals-dependencies",
+  "version": "1.0.0",
+  "port-version": 1,
+  "description": "-",
+  "homepage": "-",
+  "license": "MIT",
+  "dependencies": [
+    "boost-lexical-cast"
+  ]
+}
