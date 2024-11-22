@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <ThisFileDirectory>$(MSBuildThisFileDirectory)</ThisFileDirectory>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IncludePath>$(ThisFileDirectory)vcpkg\installed\x64-windows-static\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ThisFileDirectory)vcpkg\installed\x64-windows-static\debug\lib;$(ThisFileDirectory)vcpkg\installed\x64-windows-static\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link />
+    <Link>
+      <LibraryDependencies>boost_filesystem;boost_system;boost_container;boost_atomic;%(LibraryDependencies)</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(ThisFileDirectory)vcpkg\installed\arm64-android\debug\lib;$(ThisFileDirectory)vcpkg\installed\arm64-android\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="ThisFileDirectory">
+      <Value>$(ThisFileDirectory)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

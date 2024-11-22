@@ -6,6 +6,7 @@
   "homepage": "-",
   "license": "MIT",
   "dependencies": [
-    "boost-lexical-cast"
+    "boost-lexical-cast",
+    "boost-filesystem"
   ]
 }
