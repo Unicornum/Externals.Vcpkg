@@ -3,21 +3,32 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <ThisFileDirectory>$(MSBuildThisFileDirectory)</ThisFileDirectory>
+    <IsAndroid>$([System.String]::new($(ApplicationType).Fake).Replace('Android.Fake', 'Yes').Replace($(ApplicationType).Fake, 'No'))</IsAndroid>
+    <ProjectTypeSelector>$([System.String]::new($(IsAndroid)).Replace('No', 'x64-windows-static').Replace('Yes', 'arm64-android'))</ProjectTypeSelector>
+    <EndPathToLibs>$([System.String]::new($(Configuration)\lib).Replace('Release\', ''))</EndPathToLibs>
   </PropertyGroup>
-  <PropertyGroup>
-    <IncludePath>$(ThisFileDirectory)vcpkg\installed\x64-windows-static\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ThisFileDirectory)vcpkg\installed\x64-windows-static\debug\lib;$(ThisFileDirectory)vcpkg\installed\x64-windows-static\lib;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup>
     <Link />
     <Link>
-      <LibraryDependencies>boost_filesystem;boost_system;boost_container;boost_atomic;%(LibraryDependencies)</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(ThisFileDirectory)vcpkg\installed\arm64-android\debug\lib;$(ThisFileDirectory)vcpkg\installed\arm64-android\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ThisFileDirectory)vcpkg\installed\$(ProjectTypeSelector)\$(EndPathToLibs);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ThisFileDirectory)vcpkg\installed\$(ProjectTypeSelector)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="ThisFileDirectory">
       <Value>$(ThisFileDirectory)</Value>
+    </BuildMacro>
+    <BuildMacro Include="IsAndroid">
+      <Value>$(IsAndroid)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ProjectTypeSelector">
+      <Value>$(ProjectTypeSelector)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EndPathToLibs">
+      <Value>$(EndPathToLibs)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
