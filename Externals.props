@@ -6,12 +6,15 @@
     <IsAndroid>$([System.String]::new($(ApplicationType).Fake).Replace('Android.Fake', 'Yes').Replace($(ApplicationType).Fake, 'No'))</IsAndroid>
     <ProjectTypeSelector>$([System.String]::new($(IsAndroid)).Replace('No', 'windows\x64-windows-static').Replace('Yes', 'android\arm64-android'))</ProjectTypeSelector>
     <EndPathToLibs>$([System.String]::new($(Configuration)\lib).Replace('Release\', ''))</EndPathToLibs>
+    <AllWindowsLibs>$(ThisFileDirectory)vcpkg\installed\$(ProjectTypeSelector)\$(EndPathToLibs)\*.lib</AllWindowsLibs>
+    <AutoLinkLibs>$([System.String]::new($(IsAndroid)).Replace('No', $(AllWindowsLibs)).Replace('Yes', ''))</AutoLinkLibs>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>
     <Link />
     <Link>
       <AdditionalLibraryDirectories>$(ThisFileDirectory)vcpkg\installed\$(ProjectTypeSelector)\$(EndPathToLibs);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(AutoLinkLibs);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ClCompile>
       <AdditionalIncludeDirectories>$(ThisFileDirectory)vcpkg\installed\$(ProjectTypeSelector)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -37,6 +40,12 @@ Build.cmd
     </BuildMacro>
     <BuildMacro Include="EndPathToLibs">
       <Value>$(EndPathToLibs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="AllWindowsLibs">
+      <Value>$(AllWindowsLibs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="AutoLinkLibs">
+      <Value>$(AutoLinkLibs)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

@@ -1,6 +1,11 @@
 @echo off
 
-set ANDROID_NDK_HOME=E:\Android\android-ndk-r16b
+IF "%ANDROID_NDK_HOME%"=="" (
+echo error: not set ANDROID_NDK_HOME
+echo please call first 'setx ANDROID_NDK_HOME path\to\androidndk\root'
+pause
+goto EndOfFile
+)
 
 rem Проверить наличие собранных библиотек
 IF exist .\Vcpkg\installed\windows goto EndOfFile
