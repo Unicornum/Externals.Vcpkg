@@ -6,6 +6,6 @@ set Run7z=.\vcpkg\downloads\tools\7zip-24.08-windows\7za.exe
 call Build.cmd
 
 rem Упаковка собранных библиотек в архив SDK
-%Run7z% a "%PathToResultFile%" .\Externals.props -ir!vcpkg\vcpkg.exe -ir!vcpkg\.vcpkg-root -ir!vcpkg\scripts\buildsystems\msbuild -ir!vcpkg\installed\x64-windows-static -ir!vcpkg\installed\arm64-android
+%Run7z% a "%PathToResultFile%" .\Externals.props -ir!vcpkg\vcpkg.exe -ir!vcpkg\.vcpkg-root -ir!vcpkg\scripts\buildsystems\msbuild -ir!vcpkg\installed\windows\x64-windows-static -ir!vcpkg\installed\android\arm64-android
 
 pause

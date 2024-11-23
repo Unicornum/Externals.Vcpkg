@@ -1,0 +1,6 @@
+{
+  "dependencies": [
+    "boost-lexical-cast",
+    "boost-filesystem"
+  ]
+}

@@ -4,7 +4,7 @@
   <PropertyGroup Label="UserMacros">
     <ThisFileDirectory>$(MSBuildThisFileDirectory)</ThisFileDirectory>
     <IsAndroid>$([System.String]::new($(ApplicationType).Fake).Replace('Android.Fake', 'Yes').Replace($(ApplicationType).Fake, 'No'))</IsAndroid>
-    <ProjectTypeSelector>$([System.String]::new($(IsAndroid)).Replace('No', 'x64-windows-static').Replace('Yes', 'arm64-android'))</ProjectTypeSelector>
+    <ProjectTypeSelector>$([System.String]::new($(IsAndroid)).Replace('No', 'windows\x64-windows-static').Replace('Yes', 'android\arm64-android'))</ProjectTypeSelector>
     <EndPathToLibs>$([System.String]::new($(Configuration)\lib).Replace('Release\', ''))</EndPathToLibs>
   </PropertyGroup>
   <PropertyGroup />
@@ -16,6 +16,14 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(ThisFileDirectory)vcpkg\installed\$(ProjectTypeSelector)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <PreBuildEvent>
+      <Command>if exist $(ThisFileDirectory)Build.cmd (
+cd $(ThisFileDirectory)
+Build.cmd
+)
+
+%(Command)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="ThisFileDirectory">
