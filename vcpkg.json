@@ -1,6 +1,22 @@
 {
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "dependencies": [
-    "boost-lexical-cast",
-    "boost-filesystem"
+    "boost-filesystem",
+    "boost-signals2",
+    "boost-program-options",
+    "boost-locale",
+    "boost-format",
+    "boost-dll",
+    "boost-serialization",
+    "boost-algorithm",
+    "cryptopp",
+    "date",
+    "gtest",
+    "poco",
+    "rapidxml",
+    "robin-hood-hashing",
+    "snappy",
+    "utfcpp",
+    "wxwidgets"
   ]
 }

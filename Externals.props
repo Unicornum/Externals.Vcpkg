@@ -3,8 +3,9 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <ThisFileDirectory>$(MSBuildThisFileDirectory)</ThisFileDirectory>
+    <ExternalsVcpkgDirectory>$(MSBuildThisFileDirectory)</ExternalsVcpkgDirectory>
     <IsAndroid>$([System.String]::new($(ApplicationType).Fake).Replace('Android.Fake', 'Yes').Replace($(ApplicationType).Fake, 'No'))</IsAndroid>
-    <ProjectTypeSelector>$([System.String]::new($(IsAndroid)).Replace('No', 'windows\x64-windows-static').Replace('Yes', 'android\arm64-android'))</ProjectTypeSelector>
+    <ProjectTypeSelector>$([System.String]::new($(IsAndroid)).Replace('No', 'windows\x64-windows-static-md').Replace('Yes', 'android\arm64-android'))</ProjectTypeSelector>
     <EndPathToLibs>$([System.String]::new($(Configuration)\lib).Replace('Release\', ''))</EndPathToLibs>
     <AllWindowsLibs>$(ThisFileDirectory)vcpkg\installed\$(ProjectTypeSelector)\$(EndPathToLibs)\*.lib</AllWindowsLibs>
     <AutoLinkLibs>$([System.String]::new($(IsAndroid)).Replace('No', $(AllWindowsLibs)).Replace('Yes', ''))</AutoLinkLibs>
@@ -17,20 +18,17 @@
       <AdditionalDependencies>$(AutoLinkLibs);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ThisFileDirectory)vcpkg\installed\$(ProjectTypeSelector)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ExternalsVcpkgDirectory)vcpkg\installed\$(ProjectTypeSelector)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <PreBuildEvent>
-      <Command>if exist $(ThisFileDirectory)Build.cmd (
-cd $(ThisFileDirectory)
-Build.cmd
-)
-
-%(Command)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="ThisFileDirectory">
       <Value>$(ThisFileDirectory)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ExternalsVcpkgDirectory">
+      <Value>$(ExternalsVcpkgDirectory)</Value>
     </BuildMacro>
     <BuildMacro Include="IsAndroid">
       <Value>$(IsAndroid)</Value>
