@@ -2,31 +2,28 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <ThisFileDirectory>$(MSBuildThisFileDirectory)</ThisFileDirectory>
     <ExternalsVcpkgDirectory>$(MSBuildThisFileDirectory)</ExternalsVcpkgDirectory>
     <IsAndroid>$([System.String]::new($(ApplicationType).Fake).Replace('Android.Fake', 'Yes').Replace($(ApplicationType).Fake, 'No'))</IsAndroid>
     <ProjectTypeSelector>$([System.String]::new($(IsAndroid)).Replace('No', 'windows\x64-windows-static-md').Replace('Yes', 'android\arm64-android'))</ProjectTypeSelector>
     <EndPathToLibs>$([System.String]::new($(Configuration)\lib).Replace('Release\', ''))</EndPathToLibs>
-    <AllWindowsLibs>$(ThisFileDirectory)vcpkg\installed\$(ProjectTypeSelector)\$(EndPathToLibs)\*.lib</AllWindowsLibs>
+    <AllWindowsLibs>$(ExternalsVcpkgDirectory)vcpkg\installed\$(ProjectTypeSelector)\$(EndPathToLibs)\*.lib</AllWindowsLibs>
     <AutoLinkLibs>$([System.String]::new($(IsAndroid)).Replace('No', $(AllWindowsLibs)).Replace('Yes', ''))</AutoLinkLibs>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>
     <Link />
     <Link>
-      <AdditionalLibraryDirectories>$(ThisFileDirectory)vcpkg\installed\$(ProjectTypeSelector)\$(EndPathToLibs);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ExternalsVcpkgDirectory)vcpkg\installed\$(ProjectTypeSelector)\$(EndPathToLibs);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(AutoLinkLibs);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ClCompile>
       <AdditionalIncludeDirectories>$(ExternalsVcpkgDirectory)vcpkg\installed\$(ProjectTypeSelector)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>POCO_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PreBuildEvent />
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <BuildMacro Include="ThisFileDirectory">
-      <Value>$(ThisFileDirectory)</Value>
-    </BuildMacro>
     <BuildMacro Include="ExternalsVcpkgDirectory">
       <Value>$(ExternalsVcpkgDirectory)</Value>
     </BuildMacro>

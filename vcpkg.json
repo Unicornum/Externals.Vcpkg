@@ -11,12 +11,21 @@
     "boost-algorithm",
     "cryptopp",
     "date",
-    "gtest",
-    "poco",
     "rapidxml",
     "robin-hood-hashing",
     "snappy",
     "utfcpp",
-    "wxwidgets"
+    {
+      "name": "poco",
+      "platform": "windows"
+    },
+    {
+      "name": "gtest",
+      "platform": "windows"
+    },
+    {
+      "name": "wxwidgets",
+      "platform": "windows"
+    }
   ]
 }

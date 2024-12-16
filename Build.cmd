@@ -16,10 +16,11 @@ call bootstrap-vcpkg.bat -disableMetrics
 
 cd..
 
-rem Запуск сборки vcpkg.json (x64/ARM64 Debug/Release)
+rem ================ Можно собирать header only библиотеки в отдельную папку ================
+
 vcpkg\vcpkg.exe install --triplet "x64-windows-static-md" --x-install-root=vcpkg\installed\windows
 if ERRORLEVEL 1 (
-  echo x64-windows-static-md: error: build failed
+  echo x64-windows: error: build failed
   pause
   goto EndOfFile
 )
