@@ -10,9 +10,12 @@ ANDROID_NDK_HOME установить путь к папке нужной вер
 > Ссылка на определенный tag vcpkg автоматически приводит к сборке версий
 > библиотек, которые этот tag содержит.
 
+> [15.12.2024] Использование **android-ndk-r27c** вызывает ошибку при сборке
+> freeglut (нужен для freeimage на Android).
+
 > [15.12.2024] Сборка под Android с использованием NDK r23c (которая идет в
 > комплекте с Visual Studio 2022) завершается с ошибкой сборки для 
-> boost-locale из-за libiconv - использовать Android NDK r27c.
+> boost-locale из-за libiconv - использовать **android-ndk-r26d**.
 
 ### Сборка библиотек как SDK
 
@@ -39,5 +42,5 @@ ANDROID_NDK_HOME установить путь к папке нужной вер
 
 ### Использование
 
-[Все варианты](https://github.com/Unicornum/Example.Externals.Vcpkg) подключения 
-и использования готовых сборок.
+[Все варианты](https://github.com/Unicornum/Example.Externals.Vcpkg)
+подключения и использования готовых сборок.

@@ -15,6 +15,7 @@
     "robin-hood-hashing",
     "snappy",
     "utfcpp",
+    "freeimage",
     {
       "name": "poco",
       "platform": "windows"
