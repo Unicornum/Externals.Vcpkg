@@ -16,12 +16,9 @@
     "snappy",
     "utfcpp",
     "freeimage",
+    "gtest",
     {
       "name": "poco",
-      "platform": "windows"
-    },
-    {
-      "name": "gtest",
       "platform": "windows"
     },
     {
