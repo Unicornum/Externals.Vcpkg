@@ -14,7 +14,7 @@ call :CheckPathToAndroidNdk "%ANDROID_NDK_HOME%"
 if ERRORLEVEL 1 goto EndOfFile
 
 rem Проверить наличие файл-флага
-rem if exist .\Vcpkg\installed\windows goto EndOfFile
+if exist .\vcpkg\Success.build goto EndOfFile
 
 rem Собрать vcpkg
 cd vcpkg
@@ -39,7 +39,7 @@ if ERRORLEVEL 1 (
 )
 
 rem Удачная сборка, добавить файл-флаг как маркер этого факта
-rem ...
+echo Success > .\vcpkg\Success.build
 
 rem Библиотеки собираются в \packages\...
 rem Результат копируется в \installed\...
