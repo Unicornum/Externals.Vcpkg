@@ -3,16 +3,20 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <AndroidSuffixLib>$([System.String]::new($(Configuration)).Replace('Release', '').Replace('Debug', 'd'))</AndroidSuffixLib>
+    <AndroidSuffixLib2>$([System.String]::new($(Configuration)).Replace('Release', '').Replace('Debug', '_d'))</AndroidSuffixLib2>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>
     <Link>
-      <LibraryDependencies>boost_atomic;boost_chrono;boost_container;boost_date_time;boost_filesystem;boost_locale;boost_program_options;boost_regex;boost_serialization;boost_system;boost_thread;boost_wserialization;charset;cpufeatures-webp;cryptopp;date-tz;deflate;freeglut-gles;FreeImage$(AndroidSuffixLib);FreeImagePlus$(AndroidSuffixLib);gmock;gtest;iconv;Iex-3_3_$(AndroidSuffixLib);IlmThread-3_3_$(AndroidSuffixLib);Imath-3_1_$(AndroidSuffixLib);jasper$(AndroidSuffixLib);jpeg;jpegxr$(AndroidSuffixLib);jxrglue$(AndroidSuffixLib);lcms2;lzma;OpenEXR-3_3_$(AndroidSuffixLib);OpenEXRCore-3_3_$(AndroidSuffixLib);OpenEXRUtil-3_3_$(AndroidSuffixLib);openjp2;png;png16$(AndroidSuffixLib);raw_r;sharpyuv;snappy;tiff$(AndroidSuffixLib);turbojpeg;webp;webpdecoder;webpdemux;webpmux;z;%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>boost_atomic;boost_chrono;boost_container;boost_date_time;boost_filesystem;boost_locale;boost_program_options;boost_regex;boost_serialization;boost_system;boost_thread;boost_wserialization;charset;cpufeatures-webp;cryptopp;date-tz;deflate;freeglut-gles;FreeImage$(AndroidSuffixLib);FreeImagePlus$(AndroidSuffixLib);gmock;gtest;iconv;Iex-3_3$(AndroidSuffixLib2);IlmThread-3_3$(AndroidSuffixLib2);Imath-3_1$(AndroidSuffixLib2);jasper$(AndroidSuffixLib);jpeg;jpegxr$(AndroidSuffixLib);jxrglue$(AndroidSuffixLib);lcms2;lzma;OpenEXR-3_3$(AndroidSuffixLib2);OpenEXRCore-3_3$(AndroidSuffixLib2);OpenEXRUtil-3_3$(AndroidSuffixLib2);openjp2;png;png16$(AndroidSuffixLib);raw_r;sharpyuv;snappy;tiff$(AndroidSuffixLib);turbojpeg;webp;webpdecoder;webpdemux;webpmux;z;%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="AndroidSuffixLib">
       <Value>$(AndroidSuffixLib)</Value>
+    </BuildMacro>
+    <BuildMacro Include="AndroidSuffixLib2">
+      <Value>$(AndroidSuffixLib2)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
