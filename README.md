@@ -57,4 +57,5 @@ ANDROID_NDK_HOME установить путь к папке нужной вер
 - [RmlUI 6.0] Черное окно при старте программы, если высота окна больше ширины.
 - [gtest 1.15.2] Утечки памяти в gmock, исправлено в 
 [форке](https://github.com/Unicornum/googletest) (ветка nomemoryleaks) основного
-репозитория, а порт в Vcpkg настроен на сборку этой версии.
+репозитория, а в Vcpkg [добавлен порт](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-adding-to-registry) 
+gtest-noml, собирающий эту версию.
