@@ -52,10 +52,13 @@ ANDROID_NDK_HOME установить путь к папке нужной вер
 - [30.12.2024] Vcpkg: настройки сборки для Windows по умолчанию генерируют
 библиотеки ОГРОМНОГО размера, поэтому ссылка заменена на форк репозитория
 (ветка externals), в котором изменены настройки в windows.cmake.
-- [freeglut, метка 2024.12.16] Использование **android-ndk-r27c** вызывает ошибку
-при сборке (нужен для freeimage на Android), решается использованием ndk-r26d.
+- [freeglut, метка 2024.12.16]
+  - Использование **android-ndk-r27c** вызывает ошибку при сборке (нужен 
+    для freeimage на Android), решается использованием ndk-r26d.
+  - Проблема с поворотом устройства на Android.
 - [RmlUI 6.0] Черное окно при старте программы, если высота окна больше ширины.
-- [gtest 1.15.2] Утечки памяти в gmock, исправлено в 
-[форке](https://github.com/Unicornum/googletest) (ветка nomemoryleaks) основного
-репозитория, а в Vcpkg [добавлен порт](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-adding-to-registry) 
+- [gtest 1.15.2] Утечки памяти в gmock, исправлено в [форке](https://github.com/Unicornum/googletest)
+(ветка nomemoryleaks) основного репозитория, а в Vcpkg
+[добавлен порт](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-adding-to-registry) 
 gtest-noml, собирающий эту версию.
+- [assimp 5.4.3] Проблемы с анимациями, загруженными из .fbx файлов.
